@@ -9,7 +9,7 @@
         "simple-bus/message-bus": "^2.2",
         "simple-bus/symfony-bridge": "^4.1",
         "symfony/monolog-bundle": "^3.1",
-        "queue-interop/amqp-interop": "^0.7.3"
+        "queue-interop/amqp-interop": "^0.7"
     },
     "require-dev": {
         "matthiasnoback/symfony-dependency-injection-test": "^1.1",
