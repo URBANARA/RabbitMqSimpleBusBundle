@@ -1,15 +1,15 @@
 {
-    "name": "sylius-labs/rabbitmq-simplebus-bundle",
+    "name": "marcelsud/rabbitmq-simplebus-bundle",
     "type": "symfony-bundle",
     "description": "Integrates RabbitMQ with SimpleBus.",
     "license": "MIT",
     "require": {
         "php": "^7.1",
 
-        "php-amqplib/rabbitmq-bundle": "^1.12",
         "simple-bus/message-bus": "^2.2",
         "simple-bus/symfony-bridge": "^4.1",
-        "symfony/monolog-bundle": "^3.1"
+        "symfony/monolog-bundle": "^3.1",
+        "queue-interop/amqp-interop": "^0.7.3"
     },
     "require-dev": {
         "matthiasnoback/symfony-dependency-injection-test": "^1.1",

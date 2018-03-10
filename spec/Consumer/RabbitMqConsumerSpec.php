@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace spec\SyliusLabs\RabbitMqSimpleBusBundle\Consumer;
 
 use OldSound\RabbitMqBundle\RabbitMq\ConsumerInterface;
-use PhpAmqpLib\Message\AMQPMessage;
+use Interop\Amqp\Impl\AmqpMessage;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Psr\Log\LoggerInterface;
@@ -20,16 +20,11 @@ final class RabbitMqConsumerSpec extends ObjectBehavior
         $this->beConstructedWith($denormalizer, $messageBus, $logger);
     }
 
-    function it_is_a_oldsound_rabbitmq_bundle_consumer(): void
-    {
-        $this->shouldImplement(ConsumerInterface::class);
-    }
-
     function it_uses_message_bus_to_dispatch_denormalized_message(
         DenormalizerInterface $denormalizer,
         MessageBusInterface $messageBus
     ): void {
-        $amqpMessage = new AMQPMessage('Message body');
+        $amqpMessage = new AmqpMessage('Message body');
         $denormalizedMessage = new \stdClass();
 
         $denormalizer->denormalize($amqpMessage)->willReturn($denormalizedMessage);
@@ -43,7 +38,7 @@ final class RabbitMqConsumerSpec extends ObjectBehavior
         DenormalizerInterface $denormalizer,
         LoggerInterface $logger
     ): void {
-        $amqpMessage = new AMQPMessage('Invalid message body');
+        $amqpMessage = new AmqpMessage('Invalid message body');
 
         $denormalizer->denormalize($amqpMessage)->willThrow(new DenormalizationFailedException('Message body is invalid'));
 
@@ -57,7 +52,7 @@ final class RabbitMqConsumerSpec extends ObjectBehavior
         DenormalizerInterface $denormalizer,
         LoggerInterface $logger
     ): void {
-        $amqpMessage = new AMQPMessage('Invalid message body');
+        $amqpMessage = new AmqpMessage('Invalid message body');
 
         $denormalizer->denormalize($amqpMessage)->will(function () {
             /** @noinspection PhpUndefinedVariableInspection */
@@ -75,7 +70,7 @@ final class RabbitMqConsumerSpec extends ObjectBehavior
         MessageBusInterface $messageBus,
         LoggerInterface $logger
     ): void {
-        $amqpMessage = new AMQPMessage('Invalid message body');
+        $amqpMessage = new AmqpMessage('Invalid message body');
         $denormalizedMessage = new \stdClass();
 
         $denormalizer->denormalize($amqpMessage)->willReturn($denormalizedMessage);

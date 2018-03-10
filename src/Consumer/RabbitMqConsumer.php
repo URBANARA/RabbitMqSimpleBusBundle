@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace SyliusLabs\RabbitMqSimpleBusBundle\Consumer;
 
-use OldSound\RabbitMqBundle\RabbitMq\ConsumerInterface;
-use PhpAmqpLib\Message\AMQPMessage;
+use Interop\Amqp\AmqpMessage;
 use Psr\Log\LoggerInterface;
 use SyliusLabs\RabbitMqSimpleBusBundle\Bus\MessageBusInterface;
 use SyliusLabs\RabbitMqSimpleBusBundle\Denormalizer\DenormalizerInterface;
 
-final class RabbitMqConsumer implements ConsumerInterface
+final class RabbitMqConsumer
 {
     /**
      * @var DenormalizerInterface
@@ -45,7 +44,7 @@ final class RabbitMqConsumer implements ConsumerInterface
     /**
      * {@inheritdoc}
      */
-    public function execute(AMQPMessage $message): void
+    public function execute(AmqpMessage $message): void
     {
         try {
             $denormalizedMessage = $this->denormalizer->denormalize($message);

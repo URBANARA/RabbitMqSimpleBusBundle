@@ -4,23 +4,23 @@ declare(strict_types=1);
 
 namespace SyliusLabs\RabbitMqSimpleBusBundle\Denormalizer;
 
-use PhpAmqpLib\Message\AMQPMessage;
+use Interop\Amqp\AmqpMessage;
 
 interface DenormalizerInterface
 {
     /**
-     * @param AMQPMessage $message
+     * @param AmqpMessage $message
      *
      * @return bool
      */
-    public function supports(AMQPMessage $message): bool;
+    public function supports(AmqpMessage $message): bool;
 
     /**
-     * @param AMQPMessage $message
+     * @param AmqpMessage $message
      *
      * @return object
      *
      * @throws DenormalizationFailedException
      */
-    public function denormalize(AMQPMessage $message);
+    public function denormalize(AmqpMessage $message);
 }

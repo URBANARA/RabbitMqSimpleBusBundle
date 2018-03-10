@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace spec\SyliusLabs\RabbitMqSimpleBusBundle\Denormalizer;
 
-use PhpAmqpLib\Message\AMQPMessage;
+use Interop\Amqp\Impl\AmqpMessage;
 use PhpSpec\ObjectBehavior;
 use SyliusLabs\RabbitMqSimpleBusBundle\Denormalizer\DenormalizationFailedException;
 use SyliusLabs\RabbitMqSimpleBusBundle\Denormalizer\DenormalizerInterface;
@@ -18,7 +18,7 @@ final class CompositeDenormalizerSpec extends ObjectBehavior
 
     function it_does_not_support_a_message_if_there_are_no_denormalizers(): void
     {
-        $amqpMessage = new AMQPMessage('Message body');
+        $amqpMessage = new AmqpMessage('Message body');
 
         $this->supports($amqpMessage)->shouldReturn(false);
         $this->shouldThrow(DenormalizationFailedException::class)->during('denormalize', [$amqpMessage]);
@@ -28,7 +28,7 @@ final class CompositeDenormalizerSpec extends ObjectBehavior
         DenormalizerInterface $firstDenormalizer,
         DenormalizerInterface $secondDenormalizer
     ): void {
-        $amqpMessage = new AMQPMessage('Message body');
+        $amqpMessage = new AmqpMessage('Message body');
         $denormalizedMessage = new \stdClass();
 
         $firstDenormalizer->supports($amqpMessage)->willReturn(false);
@@ -47,7 +47,7 @@ final class CompositeDenormalizerSpec extends ObjectBehavior
         DenormalizerInterface $firstDenormalizer,
         DenormalizerInterface $secondDenormalizer
     ): void {
-        $amqpMessage = new AMQPMessage('Message body');
+        $amqpMessage = new AmqpMessage('Message body');
 
         $firstDenormalizer->supports($amqpMessage)->willReturn(false);
         $firstDenormalizer->denormalize($amqpMessage)->shouldNotBeCalled();
