@@ -1,5 +1,5 @@
 {
-    "name": "marcelsud/rabbitmq-simplebus-bundle",
+    "name": "URBANARA/rabbitmq-simplebus-bundle",
     "type": "symfony-bundle",
     "description": "Integrates RabbitMQ with SimpleBus.",
     "license": "MIT",
